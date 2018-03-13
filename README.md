@@ -9,7 +9,7 @@ Build.gradle:
 dependencies
 {
 	(...)
-    implementation 'com.github.perezjquim:permissionchecker:master-SNAPSHOT'
+	implementation 'com.github.perezjquim:permissionchecker:master-SNAPSHOT'
 }
 ```
 

@@ -1,4 +1,4 @@
-package com.perezjquim.library;
+package com.perezjquim.util;
 
 import android.app.Activity;
 import android.content.Context;
