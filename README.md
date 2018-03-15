@@ -10,6 +10,7 @@ dependencies
 {
 	(...)
 	implementation 'com.github.perezjquim:permissionchecker:master-SNAPSHOT'
+	(...)
 }
 ```
 
@@ -21,12 +22,12 @@ Initialization:
 public void onCreate(Bundle savedInstance)
 {
 	(...)
-    if (Build.VERSION.SDK_INT >= 23)
-    {
-        permissionChecker = new PermissionChecker(this);
-        permissionChecker.start();
-    }
-    (...)
+	if (Build.VERSION.SDK_INT >= 23)
+	{
+		permissionChecker = new PermissionChecker(this);
+		permissionChecker.start();
+	}
+	(...)
 }
 ```
 
@@ -36,7 +37,7 @@ public void onCreate(Bundle savedInstance)
 protected void onActivityResult(int requestCode, int resultCode, Intent data)
 {
     super.onActivityResult(requestCode, resultCode, data);
-    switch(requestCode)
+	switch(requestCode)
     {
         case PermissionChecker.REQUEST_CODE:
             permissionChecker.restart();
