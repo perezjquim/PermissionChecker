@@ -7,7 +7,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
 
-import static com.perezjquim.uilhelper.UIHelper.toast;
+import static com.perezjquim.util.UIHelper.toast;
+
 
 public class PermissionChecker
 {
