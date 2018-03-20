@@ -36,12 +36,12 @@ public void onCreate(Bundle savedInstance)
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data)
 {
-    super.onActivityResult(requestCode, resultCode, data);
+	super.onActivityResult(requestCode, resultCode, data);
 	switch(requestCode)
-    {
-        case PermissionChecker.REQUEST_CODE:
-            permissionChecker.restart();
-            break;
-    }
+	{
+		case PermissionChecker.REQUEST_CODE:
+			permissionChecker.restart();
+			break;
+	}
 }
 ```
