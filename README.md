@@ -7,16 +7,16 @@ This is a implementation of a PermissionChecker. Basically, it forces the user t
 Build.gradle (root):
 ```gradle
 allprojects {
-    repositories {
-    	(...)
-        mavenCentral()
-        maven{
-            url  'https://oss.sonatype.org/content/repositories/snapshots/'
-            name 'OSS-Sonatype'
-        }
-        maven { url "https://jitpack.io" }
-        (...)
-    }
+	repositories {
+		(...)
+		mavenCentral()
+		maven{
+		    url  'https://oss.sonatype.org/content/repositories/snapshots/'
+		    name 'OSS-Sonatype'
+		}
+		maven { url "https://jitpack.io" }
+		(...)
+	}
 }
 ```
 
@@ -24,9 +24,9 @@ Build.gradle (app):
 ```gradle
 dependencies
 {
-    (...)
-    implementation 'com.github.perezjquim:permissionchecker:master-SNAPSHOT'
-    (...)
+	(...)
+	implementation 'com.github.perezjquim:permissionchecker:master-SNAPSHOT'
+	(...)
 }
 ```
 
