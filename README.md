@@ -32,7 +32,7 @@ dependencies
 
 # Example of use
 
-Initialization:
+Initialize and start the PermissionChecker:
 (e.g. you can put this in **onCreate**)
 
 ```java
@@ -49,7 +49,7 @@ public void onCreate(Bundle savedInstance)
 }
 ```
 
-"Automated" restart:
+To keep it running:
 ```java
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data)
