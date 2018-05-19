@@ -1,5 +1,6 @@
 package com.perezjquim.permissionchecker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +12,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PermissionChecker x;
+        PermissionChecker.init(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode)
+        {
+            case PermissionChecker.REQUEST_CODE:
+                PermissionChecker.restart();
+                break;
+        }
     }
 }

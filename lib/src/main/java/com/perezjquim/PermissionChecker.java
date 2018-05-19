@@ -5,46 +5,49 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
 
 import static com.perezjquim.UIHelper.toast;
 
-
-public class PermissionChecker
+public abstract class PermissionChecker
 {
-    private Context context;
-    private CheckThread thread;
-    private String[] permissions;
+    private static Context context;
+
+    private static CheckThread thread;
+    private static String[] permissions;
+
     private static final int GRANTED = PackageManager.PERMISSION_GRANTED;
     public static final int REQUEST_CODE = 1;
+    private static final int MIN_REQUIRED_SDK = 23;
+    private static final int SAMPLING_RATE = 1000;
 
-    public PermissionChecker(Context context)
+    public static void init(Context _context)
     {
-        this.context = context;
+        context = _context;
         try
         {
             permissions = context
                 .getPackageManager()
                 .getPackageInfo(context.getPackageName(), PackageManager.GET_PERMISSIONS).requestedPermissions;
+
+            if (Build.VERSION.SDK_INT >= MIN_REQUIRED_SDK)
+            {
+                thread = new CheckThread();
+                thread.start();
+            }
         }
         catch (PackageManager.NameNotFoundException e)
         { e.printStackTrace(); }
-
-        thread = new CheckThread();
     }
 
-    public void start()
-    {
-        thread.start();
-    }
-
-    public void restart()
+    public static void restart()
     {
         thread = new CheckThread();
         thread.start();
     }
 
-    private void goToSettings()
+    private static void goToSettings()
     {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri =  Uri.fromParts("package", context.getPackageName(), null);
@@ -53,12 +56,12 @@ public class PermissionChecker
         toast(context,"Enable all permissions to continue");
     }
 
-    private boolean isPermissionChecked(String permission)
+    private static boolean isPermissionChecked(String permission)
     {
         return context.checkCallingOrSelfPermission(permission) == GRANTED;
     }
 
-    private boolean isAllPermissionsChecked()
+    private static boolean isAllPermissionsChecked()
     {
         for(String p : permissions)
         {
@@ -68,14 +71,14 @@ public class PermissionChecker
         return true;
     }
 
-    private class CheckThread extends Thread
+    private static class CheckThread extends Thread
     {
         public void run()
         {
             while(isAllPermissionsChecked())
             {
                 try
-                { Thread.sleep(1000); }
+                { Thread.sleep(SAMPLING_RATE); }
                 catch (InterruptedException e)
                 { e.printStackTrace(); }
             }
