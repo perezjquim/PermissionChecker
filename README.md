@@ -40,11 +40,7 @@ Initialize and start the PermissionChecker:
 public void onCreate(Bundle savedInstance)
 {
 	(...)
-	if (Build.VERSION.SDK_INT >= 23)
-	{
-		permissionChecker = new PermissionChecker(this);
-		permissionChecker.start();
-	}
+	PermissionChecker.init(this);
 	(...)
 }
 ```
@@ -58,7 +54,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	switch(requestCode)
 	{
 		case PermissionChecker.REQUEST_CODE:
-			permissionChecker.restart();
+			PermissionChecker.restart();
 			break;
 	}
 }
