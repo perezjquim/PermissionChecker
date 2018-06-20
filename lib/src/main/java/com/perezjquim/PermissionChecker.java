@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 
 import static com.perezjquim.UIHelper.toast;
 
@@ -66,7 +67,10 @@ public abstract class PermissionChecker
         for(String p : permissions)
         {
             if(!isPermissionChecked(p))
+            {
+                Log.e("PermissionChecker","Permission not granted: "+p);
                 return false;
+            }
         }
         return true;
     }
